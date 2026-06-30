@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PartyRooms — Crea una sala. Junta a tus amigos. Juega.</title>
+<meta name="description" content="PartyRooms es una plataforma de minijuegos multijugador: crea salas, invita amigos y juega Bingo, UNO, Trivia y mucho más desde cualquier dispositivo.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <nav>
+      <div class="logo"><span class="dot"></span> PartyRooms</div>
+      <div class="nav-links">
+        <a href="#juegos">Juegos</a>
+        <a href="#como-funciona">Cómo funciona</a>
+        <a href="#roles">Roles</a>
+        <a href="#unirse">Lista de espera</a>
+      </div>
+      <div class="nav-cta">
+        <a class="btn btn-ghost" href="login.html">Iniciar sesión</a>
+        <a class="btn btn-primary" href="#unirse">Crear sala</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero wrap">
+    <div>
+      <span class="eyebrow">● En desarrollo</span>
+      <h1>Crea una sala.<br>Junta a tus amigos.<br><span class="gradient-text">Juega.</span></h1>
+      <p class="lead">Más de 18 minijuegos multijugador en un solo lugar. Comparte un código, entra desde cualquier dispositivo y empieza a jugar en segundos — sin descargas.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#unirse">Crear una sala gratis</a>
+        <a class="btn btn-ghost" href="#juegos">Ver juegos</a>
+      </div>
+    </div>
+
+    <div class="room-card glass">
+      <div class="room-card-top">
+        <span class="room-code">SALA · 7K2L9P</span>
+        <span class="room-live"><span class="pulse"></span> EN VIVO</span>
+      </div>
+      <div class="room-game-title">🎯 Bingo nocturno</div>
+      <div class="players">
+        <div class="avatar">VA</div>
+        <div class="avatar">JM</div>
+        <div class="avatar">CR</div>
+        <div class="avatar placeholder">+2</div>
+      </div>
+      <div class="room-bar"><span></span></div>
+      <div class="room-meta">
+        <span>5/8 jugadores</span>
+        <span>Sala privada</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- JUEGOS -->
+  <section class="section wrap" id="juegos">
+    <div class="section-head">
+      <span class="eyebrow">Catálogo inicial</span>
+      <h2>18 juegos para empezar, infinitos por venir</h2>
+      <p class="muted">Cada juego corre bajo el mismo sistema de salas: código único, chat y configuración propia. El panel de administración permite activar nuevos juegos sin tocar el resto de la plataforma.</p>
+    </div>
+
+    <div class="games-grid">
+      <div class="game-tile glass"><span class="icon">🎯</span><span class="name">Bingo</span><span class="tag">2–12 jugadores</span></div>
+      <div class="game-tile glass"><span class="icon">🎓</span><span class="name">Bachillerato</span><span class="tag">2–8 jugadores</span></div>
+      <div class="game-tile glass"><span class="icon">🃏</span><span class="name">UNO</span><span class="tag">2–10 jugadores</span></div>
+      <div class="game-tile glass"><span class="icon">🁰</span><span class="name">Dominó</span><span class="tag">2–4 jugadores</span></div>
+      <div class="game-tile glass"><span class="icon">🐎</span><span class="name">Ludo</span><span class="tag">2–4 jugadores</span></div>
+      <div class="game-tile glass"><span class="icon">♟️</span><span class="name">Parchís</span><span class="tag">2–4 jugadores</span></div>
+      <div class="game-tile glass"><span class="icon">🧠</span><span class="name">Memorice</span><span class="tag">2–6 jugadores</span></div>
+      <div class="game-tile glass"><span class="icon">❓</span><span class="name">Trivia</span><span class="tag">2–16 jugadores</span></div>
+      <div class="game-tile glass"><span class="icon">⭕</span><span class="name">Tic Tac Toe</span><span class="tag">2 jugadores</span></div>
+      <div class="game-tile glass"><span class="icon">🔴</span><span class="name">Connect 4</span><span class="tag">2 jugadores</span></div>
+      <div class="game-tile glass"><span class="icon">🪢</span><span class="name">Ahorcado</span><span class="tag">2–8 jugadores</span></div>
+      <div class="game-tile glass"><span class="icon">✊</span><span class="name">Piedra, papel o tijera</span><span class="tag">2 jugadores</span></div>
+      <div class="game-tile glass"><span class="icon">🙆</span><span class="name">Simón Dice</span><span class="tag">2–8 jugadores</span></div>
+      <div class="game-tile glass"><span class="icon">🚢</span><span class="name">Batalla Naval</span><span class="tag">2 jugadores</span></div>
+      <div class="game-tile glass"><span class="icon">🐍</span><span class="name">Snake Multiplayer</span><span class="tag">2–8 jugadores</span></div>
+      <div class="game-tile glass"><span class="icon">🎲</span><span class="name">Dados</span><span class="tag">2–8 jugadores</span></div>
+      <div class="game-tile glass"><span class="icon">🖌️</span><span class="name">Pictionary</span><span class="tag">3–12 jugadores</span></div>
+      <div class="game-tile glass"><span class="icon">🎭</span><span class="name">Charadas</span><span class="tag">3–12 jugadores</span></div>
+      <div class="game-tile glass"><span class="icon">🔤</span><span class="name">Scrabble</span><span class="tag">2–4 jugadores</span></div>
+    </div>
+  </section>
+
+  <!-- COMO FUNCIONA / FEATURES -->
+  <section class="section wrap" id="como-funciona">
+    <div class="section-head">
+      <span class="eyebrow">La plataforma</span>
+      <h2>Todo lo que necesita una noche de juego</h2>
+    </div>
+
+    <div class="features">
+      <div class="feature-card glass">
+        <span class="icon">🔑</span>
+        <h3>Salas con código</h3>
+        <p>Crea una sala pública o privada, comparte el código y listo. Configura jugadores máximos, contraseña y reglas.</p>
+      </div>
+      <div class="feature-card glass">
+        <span class="icon">💬</span>
+        <h3>Chat y amigos</h3>
+        <p>Chat global, de sala y privado. Agrega amigos, mira quién está conectado y únete a su sala con un clic.</p>
+      </div>
+      <div class="feature-card glass">
+        <span class="icon">🏆</span>
+        <h3>Niveles y logros</h3>
+        <p>Gana experiencia en cada partida, sube de nivel y desbloquea cosméticos, marcos e insignias exclusivas.</p>
+      </div>
+      <div class="feature-card glass">
+        <span class="icon">🛒</span>
+        <h3>Mercado e inventario</h3>
+        <p>Compra avatares, fondos, cartones y skins con monedas que ganas jugando o gemas de eventos especiales.</p>
+      </div>
+      <div class="feature-card glass">
+        <span class="icon">🎉</span>
+        <h3>Eventos de temporada</h3>
+        <p>Halloween, Navidad, Año Nuevo y más — con misiones diarias, semanales y objetos exclusivos por temporada.</p>
+      </div>
+      <div class="feature-card glass">
+        <span class="icon">📱</span>
+        <h3>Instalable como app</h3>
+        <p>Funciona como PWA: instálala en tu celular, tablet o computador y juega sin abrir el navegador cada vez.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROLES -->
+  <section class="section wrap" id="roles">
+    <div class="section-head">
+      <span class="eyebrow">Comunidad</span>
+      <h2>Una plataforma con orden, de invitado a super admin</h2>
+      <p class="muted">Cada cuenta tiene un rol claro, con permisos pensados para mantener las salas seguras y el contenido al día.</p>
+    </div>
+    <div class="roles">
+      <span class="role-chip glass"><span class="role-dot" style="background:#8b91b0"></span> Invitado</span>
+      <span class="role-chip glass"><span class="role-dot" style="background:var(--cyan)"></span> Usuario</span>
+      <span class="role-chip glass"><span class="role-dot" style="background:var(--blue)"></span> Moderador</span>
+      <span class="role-chip glass"><span class="role-dot" style="background:var(--purple)"></span> Administrador</span>
+      <span class="role-chip glass"><span class="role-dot" style="background:#ff5cb3"></span> Super Administrador</span>
+    </div>
+  </section>
+
+  <!-- WAITLIST / CTA -->
+  <section class="section wrap" id="unirse">
+    <div class="cta-panel glass">
+      <span class="eyebrow">Próximamente</span>
+      <h2>Sé de los primeros en entrar a una sala</h2>
+      <p>Estamos construyendo PartyRooms en vivo. Déjanos tu correo y te avisamos apenas se abran las primeras salas.</p>
+      <form class="waitlist-form" id="waitlistForm">
+        <input type="email" id="waitlistEmail" placeholder="tucorreo@ejemplo.com" required>
+        <button class="btn btn-primary" type="submit">Avisarme</button>
+      </form>
+      <p class="form-note" id="waitlistNote">Sin spam. Solo un correo cuando esté lista la primera sala.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-row">
+    <span>© 2026 PartyRooms. Proyecto en desarrollo.</span>
+    <span>Hecho con 💙💜🩵 — tema oscuro, glassmorphism.</span>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

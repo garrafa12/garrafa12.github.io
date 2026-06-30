@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Iniciar sesión — PartyRooms</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+  .auth-wrap{ min-height: 80vh; display:flex; align-items:center; justify-content:center; padding: 40px 0; }
+  .auth-card{ width:100%; max-width: 380px; padding: 36px; }
+  .auth-card h1{ font-size: 22px; margin: 14px 0 8px; text-align:center; }
+  .auth-card > p.muted{ text-align:center; margin-bottom: 22px; }
+  .auth-card .btn{ width:100%; margin-top:10px; }
+  .auth-tabs{ display:flex; gap:8px; margin-bottom: 20px; }
+  .auth-tab{
+    flex:1; text-align:center; padding: 10px; border-radius: 999px;
+    font-size: 13px; font-family: var(--font-mono); cursor:pointer;
+    background: rgba(255,255,255,0.04); border: 1px solid var(--panel-border);
+  }
+  .auth-tab.active{ background: linear-gradient(95deg, var(--blue), var(--purple)); border-color: transparent; }
+  .auth-field{ margin-bottom: 12px; }
+  .auth-field label{ display:block; font-size: 12.5px; color: var(--muted); margin-bottom: 6px; }
+  .auth-field input{
+    width:100%; padding: 12px 14px; border-radius: var(--radius-sm);
+    border: 1px solid var(--panel-border); background: rgba(255,255,255,0.04);
+    color: var(--text); font-family: var(--font-body); font-size: 14px;
+  }
+  .auth-field input:focus{ outline: 2px solid var(--cyan); outline-offset: 1px; }
+  .auth-divider{ display:flex; align-items:center; gap:12px; margin: 18px 0; color: var(--muted); font-size: 12px; }
+  .auth-divider::before, .auth-divider::after{ content:""; flex:1; height:1px; background: var(--panel-border); }
+  .auth-msg{ font-size: 13px; margin-top: 14px; text-align:center; min-height: 18px; }
+  .auth-msg.error{ color: #ff7d7d; }
+  .auth-msg.success{ color: var(--success); }
+  .hidden{ display:none !important; }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <nav>
+      <a class="logo" href="index.html"><span class="dot"></span> PartyRooms</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap auth-wrap">
+  <div class="auth-card glass">
+    <span class="eyebrow">Cuenta</span>
+    <h1>Entra a PartyRooms</h1>
+    <p class="muted">Crea tu cuenta o inicia sesión para jugar.</p>
+
+    <div class="auth-tabs">
+      <div class="auth-tab active" data-tab="login">Iniciar sesión</div>
+      <div class="auth-tab" data-tab="registro">Crear cuenta</div>
+    </div>
+
+    <!-- LOGIN -->
+    <form id="formLogin">
+      <div class="auth-field">
+        <label for="loginCorreo">Correo</label>
+        <input type="email" id="loginCorreo" required placeholder="tucorreo@ejemplo.com">
+      </div>
+      <div class="auth-field">
+        <label for="loginPassword">Contraseña</label>
+        <input type="password" id="loginPassword" required placeholder="••••••••">
+      </div>
+      <button class="btn btn-primary" type="submit">Iniciar sesión</button>
+    </form>
+
+    <!-- REGISTRO -->
+    <form id="formRegistro" class="hidden">
+      <div class="auth-field">
+        <label for="regNombre">Nombre de usuario</label>
+        <input type="text" id="regNombre" required placeholder="Tu nombre en el juego">
+      </div>
+      <div class="auth-field">
+        <label for="regCorreo">Correo</label>
+        <input type="email" id="regCorreo" required placeholder="tucorreo@ejemplo.com">
+      </div>
+      <div class="auth-field">
+        <label for="regPassword">Contraseña</label>
+        <input type="password" id="regPassword" required placeholder="Mínimo 6 caracteres" minlength="6">
+      </div>
+      <button class="btn btn-primary" type="submit">Crear cuenta</button>
+    </form>
+
+    <div class="auth-divider">o</div>
+
+    <button class="btn btn-ghost" id="btnGoogle" type="button">🔵 Continuar con Google</button>
+
+    <p class="auth-msg" id="authMsg"></p>
+  </div>
+</main>
+
+<script type="module">
+  import { iniciarSesionConCorreo, registrarConCorreo, iniciarSesionConGoogle, traducirErrorAuth, observarSesion } from "./assets/js/auth.js";
+
+  const tabs = document.querySelectorAll('.auth-tab');
+  const formLogin = document.getElementById('formLogin');
+  const formRegistro = document.getElementById('formRegistro');
+  const msg = document.getElementById('authMsg');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      msg.textContent = '';
+      if (tab.dataset.tab === 'login') {
+        formLogin.classList.remove('hidden');
+        formRegistro.classList.add('hidden');
+      } else {
+        formRegistro.classList.remove('hidden');
+        formLogin.classList.add('hidden');
+      }
+    });
+  });
+
+  function mostrarMensaje(texto, tipo) {
+    msg.textContent = texto;
+    msg.className = 'auth-msg ' + tipo;
+  }
+
+  // Si ya hay sesión activa, redirige directo al dashboard
+  observarSesion((user) => {
+    if (user) window.location.href = 'dashboard.html';
+  });
+
+  formLogin.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    mostrarMensaje('Entrando...', '');
+    try {
+      await iniciarSesionConCorreo(
+        document.getElementById('loginCorreo').value,
+        document.getElementById('loginPassword').value
+      );
+      mostrarMensaje('¡Bienvenido de vuelta!', 'success');
+    } catch (err) {
+      mostrarMensaje(traducirErrorAuth(err), 'error');
+    }
+  });
+
+  formRegistro.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    mostrarMensaje('Creando tu cuenta...', '');
+    try {
+      await registrarConCorreo(
+        document.getElementById('regNombre').value,
+        document.getElementById('regCorreo').value,
+        document.getElementById('regPassword').value
+      );
+      mostrarMensaje('¡Cuenta creada! Entrando...', 'success');
+    } catch (err) {
+      mostrarMensaje(traducirErrorAuth(err), 'error');
+    }
+  });
+
+  document.getElementById('btnGoogle').addEventListener('click', async () => {
+    mostrarMensaje('Abriendo Google...', '');
+    try {
+      await iniciarSesionConGoogle();
+    } catch (err) {
+      mostrarMensaje(traducirErrorAuth(err), 'error');
+    }
+  });
+</script>
+</body>
+</html>
